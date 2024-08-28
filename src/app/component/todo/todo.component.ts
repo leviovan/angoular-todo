@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 
-interface Todo{
+
+
+export type statuses='active'| 'complited'|''
+
+export interface Todo{
   id:number
   title:string,
-  status:'active'| 'complited'
+  status:statuses
 }
 
 @Component({
@@ -13,21 +17,27 @@ interface Todo{
 
 export class Todos  {
   
-  private todos :Todo[]=[]
+  private _todos :Todo[]=[]
   private id:number=0
   newTodo:string|null=null
 
-  getTodos(){
-    return this.todos
+  get getTodos(){
+    return this._todos
   }
   
   addTodo(){
-    console.log(this.todos);
-    this.id=+
-    this.todos?.push({id:this.id,status:'active',title:this.newTodo!})
+    this.id=+1;
+    this._todos = [...this._todos,{id:this.id,status:'active',title:this.newTodo!}]
+    this.newTodo=""
   }
 
   removeTodo(index:number){
-    this.todos?.splice(index,1)
+    this._todos?.splice(index,1)
+  }
+  toggleStatusTodo(index:number){
+
+      this._todos[index].status= this._todos[index].status==='active' ? 'complited': "active"
+      console.log(this._todos[index].status);
+      
   }
 }

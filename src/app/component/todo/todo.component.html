@@ -1,12 +1,35 @@
-<section class="max-w-[1280px] mx-auto flex flex-col items-center justify-center">
+<section class="max-w-[1280px] mx-auto flex flex-col items-center justify-center  ">
 
-  <div class=" max-w-[480px]">
-    <h1 class="font-bold text-center text-[80px]">Todos</h1>
-    <div class=" border border-red-200 px-6 py-3 text-[28px]">
-      <input type="text" [(ngModel)]="newTodo" placeholder="Что надо сделать!">
+  <div class=" max-w-[480px]  ">
+   <div class=" mb-2">
+      <h1 class="font-bold text-center text-[80px]">Todos</h1>
+      <div class=" border border-red-200 px-6 py-3 text-[28px] ">
+        <input type="text" [(ngModel)]="newTodo" placeholder="Что надо сделать!">
+      </div>
+      <div  *ngIf="newTodo?.length">
+        <button (click)="addTodo()">Добавить дело</button>
+      </div>
+   </div>
+  
+    <div  *ngFor="let todo of getTodos | filterTodo:'' ; index as i">
+        <div class="w-full flex justify-between  border border-blue-300  px-6 py-3 text-[28px]">
+          
+          <button  (click)="toggleStatusTodo(i)" class="rounded-full border border-green-600 p-1 w-[45px] h-[42px] cursor-pointer "> 
+           <svg  *ngIf="todo.status==='complited'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 548.873 548.873" style="enable-background:new 0 0 548.873 548.873;" xml:space="preserve"><g><g><polygon points="449.34,47.966 195.46,301.845 99.533,205.917 0,305.449 95.928,401.378 195.46,500.907 294.99,401.378 548.873,147.496 "/></g></g></svg>
+          </button>
+
+
+          <div class="w-full flex justify-between">
+            <span class="inline-block w-full">{{todo.title}}</span>
+            <button (click)="removeTodo(i)">
+              <svg width="15" height="15" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.11 2.697L2.698 4.11 6.586 8l-3.89 3.89 1.415 1.413L8 9.414l3.89 3.89 1.413-1.415L9.414 8l3.89-3.89-1.415-1.413L8 6.586l-3.89-3.89z" fill="#000"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
     </div>
   </div>
 
-  <button (click)="addTodo()">addTodo</button>
   
 </section>

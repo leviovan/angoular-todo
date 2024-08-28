@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { Todos } from './component/todo/todo.component';
 import { FormsModule } from '@angular/forms';
 import { ListItemComponent } from './component/listTodo/list-item/list-item.component';
+import { FilterTodoPipe } from './pipe/filter-todo.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     Todos,
-    ListItemComponent
+    ListItemComponent,
+    FilterTodoPipe
   ],
   imports: [
     BrowserModule,
