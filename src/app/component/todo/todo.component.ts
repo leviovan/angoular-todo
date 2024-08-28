@@ -17,7 +17,7 @@ export interface Todo{
 })
 
 export class Todos  {
-  
+
   private _todos :Todo[]=[]
   private _id:number=0
   private _filter:statuses=''
@@ -27,31 +27,29 @@ export class Todos  {
   get todos(){
     return this._todos
   }
-
   get filter(){
     return this._filter
   }
-
-   setFilter(newFilter:statuses) {
+  setFilter(newFilter:statuses) {
      this._filter=newFilter;
   }
-
   addTodo(){
     if (this.newTodo?.trim()){
-      this._id=+1;
+      console.log(this.todos);
+      this._id= this._id+1;
       this._todos = [...this._todos,{id:this._id,status:'active',title:this.newTodo!}]
+     
       this.newTodo=""
     }
   }
-
   removeTodo(index:number){
     this._todos?.splice(index,1)
     this._todos=[...this._todos]
   }
-
   toggleStatusTodo(index:number){
-      this._todos[index].status= this._todos[index].status==='active' ? 'completed': "active"
-      console.log(this._todos[index].status);
-  }
+    console.log(index);
+    
 
+    this._todos[index].status= this._todos[index].status==='active' ? 'completed': "active"
+  }
 }
