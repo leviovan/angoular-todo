@@ -5,4 +5,20 @@
     span{
         text-decoration: line-through;
     }
+
+}
+.active{
+    border-bottom: 1px solid red;
+    padding-bottom: 3px;
+}
+
+.item_input input {
+    border: blue solid 1px ;
+    padding: 10px;
+}
+
+.item_input input[readonly] {
+  border: none;
+  padding: 0;
+    
 }

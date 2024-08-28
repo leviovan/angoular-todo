@@ -7,7 +7,7 @@ export type statuses='active'| 'completed'|''
 export interface Todo{
   id:number
   title:string,
-  status:statuses
+  status:statuses,
 }
 
 @Component({
