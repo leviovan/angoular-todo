@@ -4,6 +4,14 @@
    <div class=" mb-2">
       <h1 class="font-bold text-center text-[80px]">Todos</h1>
       <div class=" border border-red-200 px-6 py-3 text-[28px] ">
+        <button (click)="reverseAllTodo()"> 
+
+<svg width="20px" height="20px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 7H10V0H6V7L3 7V8L8 13L13 8V7Z" fill="#000000"/>
+<path d="M14 14H2V16H14V14Z" fill="#000000"/>
+</svg>
+
+        </button>
         <input type="text" [(ngModel)]="newTodo" placeholder="Что надо сделать!">
       </div>
       <div  *ngIf="newTodo?.length">
@@ -19,15 +27,21 @@
       [filter]="filter"
       >
     </app-list-todo>
-    <div class="">
-        <div>
-          <span> осталось дел: {{(todos|filterTodo:'active').length}}</span>
-        </div>
+     <div class="flex justify-between">
+       <div>
+         <span> осталось дел: {{(todos | filterTodo:'active').length}}</span>
+      </div>
+      <div *ngIf="!!todos.length" >
+           <button  (click)="removeTodos()">Удалить все дела</button>
+      </div>
+     </div>
+    <div class="flex justify-between">
         <div class="flex gap-3">
           <button [ngClass]="{'active':filter===''}" (click)="setFilter('')">Все дела </button>
           <button [ngClass]="{'active':filter==='active'}" (click)="setFilter('active')">Активные </button>
           <button [ngClass]="{'active':filter==='completed'}" (click)="setFilter('completed')">Сделанные </button>
         </div>
+
     </div>
   </div>
 </section>

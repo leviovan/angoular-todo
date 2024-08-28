@@ -1,7 +1,7 @@
 <div *ngIf="isEdit===false" (dblclick)="toggleIsEdit()" [ngClass]="{'completed': todo.status==='completed' }"
 	class="w-full flex justify-between gap-2  border border-blue-300  p-3 text-[28px]">
 		
-	<button (click)="handlerToggleStatusTodo(i)"
+	<button (click)="handlerToggleStatusTodo(todo.id)"
 		class="rounded-full border border-green-600 p-1 w-[45px] h-[42px] cursor-pointer ">
 		<svg class="hidden" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
 			xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 548.873 548.873"
@@ -17,7 +17,7 @@
 
 	<div class="w-full flex justify-between">
 		<span class="inline-block w-full ">{{todo.title}}</span>
-		<button (click)="handlerRemoveTodo(i)">
+		<button (click)="handlerRemoveTodo(todo.id)">
 			<svg width="15" height="15" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
 				<path fill-rule="evenodd" clip-rule="evenodd"
 					d="M4.11 2.697L2.698 4.11 6.586 8l-3.89 3.89 1.415 1.413L8 9.414l3.89 3.89 1.413-1.415L9.414 8l3.89-3.89-1.415-1.413L8 6.586l-3.89-3.89z"

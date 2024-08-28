@@ -7,7 +7,8 @@ import { Todos } from './component/todo/todo.component';
 import { FormsModule } from '@angular/forms';
 import { ListItemComponent } from './component/listTodo/list-item/list-item.component';
 import { FilterTodoPipe } from './pipe/filter-todo.pipe';
-import { ListTodo } from './component/listTodo/list-Todo.component';
+import { ListTodo } from './component/listTodo/list-todo.component';
+
 
 
 @NgModule({
