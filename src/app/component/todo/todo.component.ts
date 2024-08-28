@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 
 
-export type statuses='active'| 'complited'|''
+export type statuses='active'| 'completed'|''
 
 export interface Todo{
   id:number
@@ -13,31 +13,45 @@ export interface Todo{
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
+  styleUrls:['./todo.component.scss']
 })
 
 export class Todos  {
   
   private _todos :Todo[]=[]
-  private id:number=0
+  private _id:number=0
+  private _filter:statuses=''
+
   newTodo:string|null=null
 
-  get getTodos(){
+  get todos(){
     return this._todos
   }
-  
+
+  get filter(){
+    return this._filter
+  }
+
+   setFilter(newFilter:statuses) {
+     this._filter=newFilter;
+  }
+
   addTodo(){
-    this.id=+1;
-    this._todos = [...this._todos,{id:this.id,status:'active',title:this.newTodo!}]
-    this.newTodo=""
+    if (this.newTodo?.trim()){
+      this._id=+1;
+      this._todos = [...this._todos,{id:this._id,status:'active',title:this.newTodo!}]
+      this.newTodo=""
+    }
   }
 
   removeTodo(index:number){
     this._todos?.splice(index,1)
+    this._todos=[...this._todos]
   }
-  toggleStatusTodo(index:number){
 
-      this._todos[index].status= this._todos[index].status==='active' ? 'complited': "active"
+  toggleStatusTodo(index:number){
+      this._todos[index].status= this._todos[index].status==='active' ? 'completed': "active"
       console.log(this._todos[index].status);
-      
   }
+
 }
