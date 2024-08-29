@@ -17,11 +17,9 @@ export class Todos {
 
   setFilter(newFilter: Status) {
     this.filter = newFilter;
-
   }
 
   addTodo() {
-
     if (this.newTodo?.trim()) {
       console.log(this.todos);
       this.id = this.id + 1;
