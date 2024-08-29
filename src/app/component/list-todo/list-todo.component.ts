@@ -1,18 +1,18 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { statuses, Todo } from '../todo/todo.component';
+import { Status, Todo } from 'src/app/types/todo';
+
 
 @Component({
   selector: 'app-list-todo',
   templateUrl: './list-todo.component.html',
-  styleUrls: ['./list-todo.component.scss']
 })
 
 export class ListTodo implements OnInit {
   @Input() todos!: Todo[];
-  @Input() filter!: statuses;
+  @Input() filter!: Status;
   @Output() eventToggleStatusTodo = new EventEmitter<number>()
   @Output() eventRemoveTodo = new EventEmitter<number>()
-  
+
   constructor() { }
   ngOnInit() { }
 
