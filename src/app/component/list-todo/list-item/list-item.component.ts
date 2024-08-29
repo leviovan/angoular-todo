@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { Todo } from '../../todo/todo.component';
 
 @Component({
@@ -15,21 +15,25 @@ export class ListItemComponent implements OnInit {
   @Input() i!:number ;
   @Output() eventToggleStatusTodo = new EventEmitter<number>()
   @Output() eventRemoveTodo = new EventEmitter<number>()
+  
+  isEdit=false
 
-  private _isEdit=false
+  ////для outsideClick
+  @HostListener('document:click', ['$event'])
+  clickout(event:any) {
+    if(!this.eRef.nativeElement.contains(event.target)) {
+         this.isEdit=false
+    }
+  }
+  constructor(private eRef: ElementRef) {
+     this.isEdit=true
+  }
 
-  constructor() { }
   ngOnInit() { }
 
-  get isEdit(){
-      return this._isEdit
-  }
   toggleIsEdit(){
-    console.log("work");
-    
-    this._isEdit= !this._isEdit
+    this.isEdit= !this.isEdit
   }
-
   handlerToggleStatusTodo(index: number) {
     this.eventToggleStatusTodo.emit(index)
   }

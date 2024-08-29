@@ -4,7 +4,6 @@ import { statuses, Todo } from '../todo/todo.component';
 @Component({
   selector: 'app-list-todo',
   templateUrl: './list-todo.component.html',
-  styleUrls: ['./list-todo.component.scss']
 })
 
 export class ListTodo implements OnInit {
