@@ -10,18 +10,16 @@ import { Todo } from 'src/app/types/todo';
 
 export class ListItemComponent implements OnInit {
 
-  @Input() toggleStatus!: (i: number) => void;
-  @Input() removeTodo!: (i: number) => void;
-  @Input() todo!: Todo;
-  @Input() i!: number;
-  @Output() eventToggleStatusTodo = new EventEmitter<number>()
+  @Input() todo?: Todo;
+
+  @Output() eventToggleTodoStatus = new EventEmitter<number>()
   @Output() eventRemoveTodo = new EventEmitter<number>()
 
   isEdit = false
 
   ////для outsideClick
   @HostListener('document:click', ['$event'])
-  clickout(event: any) {
+  clickout(event: Event) {
     if (!this.eRef.nativeElement.contains(event.target)) {
       this.isEdit = false
     }
@@ -35,8 +33,8 @@ export class ListItemComponent implements OnInit {
   toggleIsEdit() {
     this.isEdit = !this.isEdit
   }
-  handlerToggleStatusTodo(index: number) {
-    this.eventToggleStatusTodo.emit(index)
+  handlerToggleTodoStatus(index: number) {
+    this.eventToggleTodoStatus.emit(index)
   }
   handlerRemoveTodo(index: number) {
     this.eventRemoveTodo.emit(index)

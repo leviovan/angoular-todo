@@ -7,16 +7,16 @@ import { Status, Todo } from 'src/app/types/todo';
 })
 
 export class ListTodo implements OnInit {
-  @Input() todos!: Todo[];
-  @Input() filter!: Status;
-  @Output() eventToggleStatusTodo = new EventEmitter<number>()
+  @Input() todos?: Todo[];
+  @Input() filter?: Status;
+  @Output() eventToggleTodoStatus = new EventEmitter<number>()
   @Output() eventRemoveTodo = new EventEmitter<number>()
 
   constructor() { }
   ngOnInit() { }
 
-  handlerToggleStatusTodo(index: number) {
-    this.eventToggleStatusTodo.emit(index)
+  handlerToggleTodoStatus(index: number) {
+    this.eventToggleTodoStatus.emit(index)
   }
   handlerRemoveTodo(index: number) {
     this.eventRemoveTodo.emit(index)

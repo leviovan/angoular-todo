@@ -1,10 +1,7 @@
-<div *ngFor="let todo of todos! | filterTodo : filter; index as i">
-
-  <app-list-item 
-    (eventRemoveTodo)="handlerRemoveTodo($event)"
-    (eventToggleStatusTodo)="handlerToggleStatusTodo($event)"
-    [todo]="todo"
-  [i]="i"
-  >
-  </app-list-item>
+<div *ngIf=" filter || filter===''">
+  <div *ngFor="let todo of todos! | filterTodo : filter ; index as i">
+    <app-list-item (eventRemoveTodo)="handlerRemoveTodo($event)"
+      (eventToggleTodoStatus)="handlerToggleTodoStatus($event)" [todo]="todo">
+    </app-list-item>
+  </div>
 </div>

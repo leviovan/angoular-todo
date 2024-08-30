@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Status, Todo } from 'src/app/types/todo';
 
 
@@ -14,6 +14,9 @@ export class Todos {
   id: number = 0
   filter: Status = ''
   newTodo: string | null = null
+
+  @Output() eventToggleTodoStatus = new EventEmitter<number>()
+  @Output() eventRemoveTodo = new EventEmitter<number>()
 
   setFilter(newFilter: Status) {
     this.filter = newFilter;

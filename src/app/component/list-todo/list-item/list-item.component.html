@@ -1,6 +1,6 @@
-<div *ngIf="isEdit===false"  [ngClass]="{'completed': todo.status==='completed' }"
+<div *ngIf="isEdit===false && !!todo"  [ngClass]="{'completed': todo.status==='completed' }"
   class="w-full flex justify-between gap-2  border border-blue-300  p-3 text-[28px]">
-  <button (click)="handlerToggleStatusTodo(todo.id)"
+  <button (click)="handlerToggleTodoStatus(todo.id)"
     class="rounded-full border border-green-600 p-1 w-[45px] h-[42px] cursor-pointer ">
     <svg class="hidden" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 548.873 548.873"
@@ -22,6 +22,6 @@
 </div>
 
 <div *ngIf="isEdit===true" class="border border-red-200 px-6 py-3 text-[28px] ">
-  <input type="text" autofocus (onblur)="toggleIsEdit()" (blur)="toggleIsEdit()"
+  <input type="text" *ngIf="!!todo" autofocus (onblur)="toggleIsEdit()" (blur)="toggleIsEdit()"
     [(ngModel)]="todo.title">
 </div>
