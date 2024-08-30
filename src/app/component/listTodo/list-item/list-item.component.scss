@@ -1,4 +1,12 @@
+.completed{
+    svg{
+        display: block;
+    }
+    span{
+        text-decoration: line-through;
+    }
 
+}
 .active{
     border-bottom: 1px solid red;
     padding-bottom: 3px;
