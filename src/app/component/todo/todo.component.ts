@@ -9,22 +9,20 @@ import { Status, Todo } from 'src/app/types/todo';
   styleUrls: ['./todo.component.scss']
 })
 
-export class Todos implements OnInit{
-
+export class Todos implements OnInit {
 
   id: number = 0
   filter: Status = ''
   newTodo: string | null = null
-  todos:Todo[]=[]
-  constructor(private todoService:TodoService){
+  todos: Todo[] = []
 
-  }
+  constructor(private todoService: TodoService) { }
+
   ngOnInit(): void {
     this.todoService.todos$.subscribe(newState => {
       this.todos = newState;
-    });
-    
-  } 
+    })
+  }
 
   @Output() eventToggleTodoStatus = new EventEmitter<number>()
   @Output() eventRemoveTodo = new EventEmitter<number>()
@@ -32,33 +30,21 @@ export class Todos implements OnInit{
   setFilter(newFilter: Status) {
     this.filter = newFilter;
   }
-
-  addTodo() {
-    if (this.newTodo?.trim()) {
-      this.id = this.id + 1;
-      this.todoService.updateTodo([...this.todos,{ id: this.id, status: 'active', title: this.newTodo}])
-      this.newTodo = ''
-    }
+  addTodo(newTodo: string) {
+    this.todoService.addTodo(newTodo)
+    this.newTodo = ''
   }
-
   removeTodo(index: number) {
-    const indexTodo = this.todos.map(t => t.id).indexOf(index)
-    this.todos.splice(indexTodo, 1)
-     this.todoService.updateTodo([...this.todos])
+    this.todoService.removeTodo(index)
   }
   reverseAllTodo() {
-   let tempTodo = this.todos.map((todo) => { todo.status = todo.status === 'active' ? 'completed' : 'active'; return todo })
-    this.todoService.updateTodo([...tempTodo])
+    this.todoService.reverseAllTodo()
   }
   toggleStatusTodo(id: number) {
-    const newTodos = this.todos.map((todo) => {
-      todo.id === id && (todo.status = todo.status === 'active' ? 'completed' : 'active')
-      return todo
-    })
-    this.todoService.updateTodo([...newTodos])
+    this.todoService.toggleStatusTodo(id)
   }
   removeTodos() {
-     this.todoService.updateTodo([])
+    this.todoService.removeTodos()
   }
   isActiveClass(currentFilter: Status) {
     return !!(this.filter === currentFilter)
