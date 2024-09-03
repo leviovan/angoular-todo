@@ -12,7 +12,7 @@
         <input type="text" [(ngModel)]="newTodo" placeholder="Что надо сделать!">
       </div>
       <div *ngIf="newTodo?.length">
-        <button (click)="addTodo(newTodo!)">Добавить дело</button>
+        <button *ngIf="newTodo" (click)="addTodo(newTodo)">Добавить дело</button>
       </div>
     </div>
 

@@ -10,7 +10,7 @@ import { toggleStatus } from '../utilites/toogleStatus';
 
 export class TodoService {
 
-  id: number = 0
+
   private todos = new BehaviorSubject<Todo[]>([]);
 
   constructor() { }
@@ -18,19 +18,13 @@ export class TodoService {
   get todos$() {
     return this.todos.asObservable();
   }
-  updateTodo(newState: Todo[]) {
-    this.todos.next(newState);
-  }
   addTodo(newTodo: string) {
     if (newTodo?.trim()) {
-      this.id = this.id + 1;
-      this.todos.next([...this.todos.value, { id: this.id, status: 'active', title: newTodo }])
+      this.todos.next([...this.todos.value, { id: Date.now(), status: 'active', title: newTodo }])
     }
   }
   removeTodo(id: number) {
-    const indexTodo = this.todos.value.map(t => t.id).indexOf(id)
-    const tempTodo = this.todos.value
-    tempTodo.splice(indexTodo, 1)
+    const tempTodo = this.todos.value.filter(t => t.id !== id)
     this.todos.next([...tempTodo])
   }
   reverseAllTodo() {
