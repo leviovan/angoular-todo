@@ -12,12 +12,16 @@
         <input type="text" [(ngModel)]="newTodo" placeholder="Что надо сделать!">
       </div>
       <div *ngIf="newTodo?.length">
-        <button (click)="addTodo()">Добавить дело</button>
+        <button *ngIf="newTodo" (click)="addTodo(newTodo)">Добавить дело</button>
       </div>
     </div>
+
+
     <app-list-todo [todos]="todos" (eventRemoveTodo)="removeTodo($event)"
-      (eventToggleStatusTodo)="toggleStatusTodo($event)" [filter]="filter">
+      (eventToggleTodoStatus)="toggleStatusTodo($event)" [filter]="filter">
     </app-list-todo>
+
+
     <div class="flex justify-between">
       <span> осталось дел: {{(todos | filterTodo:'active').length}}</span>
       <button *ngIf="!!todos.length" (click)="removeTodos()">Удалить все дела</button>

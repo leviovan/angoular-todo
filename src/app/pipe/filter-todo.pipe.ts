@@ -7,7 +7,7 @@ import { Status, Todo } from '../types/todo';
 })
 
 export class FilterTodoPipe implements PipeTransform {
-
+  
   transform(value: Todo[], filter: Status): Todo[] {
     return filter ? value.filter(p => p.status === filter) : value
   }
