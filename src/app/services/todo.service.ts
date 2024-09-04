@@ -23,6 +23,7 @@ export class TodoService {
       this.todos.next([...this.todos.value, { id: Date.now(), status: 'active', title: newTodo }])
     }
   }
+
   removeTodo(id: number) {
     const tempTodo = this.todos.value.filter(t => t.id !== id)
     this.todos.next([...tempTodo])

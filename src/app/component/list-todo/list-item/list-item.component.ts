@@ -1,11 +1,12 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { Todo } from 'src/app/types/todo';
 
 
 @Component({
   selector: 'app-list-item',
   templateUrl: './list-item.component.html',
-  styleUrls: ['./list-item.component.scss']
+  styleUrls: ['./list-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ListItemComponent implements OnInit {
@@ -33,10 +34,16 @@ export class ListItemComponent implements OnInit {
   toggleIsEdit() {
     this.isEdit = !this.isEdit
   }
+  rerender() {
+    console.log('render', this.todo?.id);
+  }
+
   handlerToggleTodoStatus(index: number) {
     this.eventToggleTodoStatus.emit(index)
   }
+
   handlerRemoveTodo(index: number) {
     this.eventRemoveTodo.emit(index)
   }
+
 }
