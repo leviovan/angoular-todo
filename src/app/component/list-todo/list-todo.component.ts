@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Status, Todo } from 'src/app/types/todo';
 
 @Component({
   selector: 'app-list-todo',
   templateUrl: './list-todo.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class ListTodo implements OnInit {
