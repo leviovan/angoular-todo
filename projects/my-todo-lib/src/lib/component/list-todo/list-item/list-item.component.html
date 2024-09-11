@@ -1,8 +1,8 @@
 <div *ngIf="isEdit===false && !!todo"  [ngClass]="{'completed': todo.status==='completed' }"
-  class="w-full flex justify-between gap-2  border border-blue-300  p-3 text-[28px]">
+  class="container">
   <button (click)="handlerToggleTodoStatus(todo.id)"
-    class="rounded-full border border-green-600 p-1 w-[45px] h-[42px] cursor-pointer ">
-    <svg class="hidden" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+    class="status">
+    <svg *ngIf="todo.status==='completed'" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 548.873 548.873"
       style="enable-background:new 0 0 548.873 548.873;" xml:space="preserve">
       <polygon
@@ -10,8 +10,8 @@
     </svg>
   </button>
   <div class="w-full flex justify-between">
-    <span (dblclick)="toggleIsEdit(); $event.stopPropagation()" class="inline-block w-full ">{{todo.title}}</span>
-    <button (click)="handlerRemoveTodo(todo.id)">
+    <span (dblclick)="toggleIsEdit(); $event.stopPropagation()"  [ngClass]="{'completed': todo.status==='completed'}">{{todo.title}}</span>
+    <button  (click)="handlerRemoveTodo(todo.id)">
       <svg  width="15" height="15" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd"
           d="M4.11 2.697L2.698 4.11 6.586 8l-3.89 3.89 1.415 1.413L8 9.414l3.89 3.89 1.413-1.415L9.414 8l3.89-3.89-1.415-1.413L8 6.586l-3.89-3.89z"
@@ -20,7 +20,7 @@
     </button>
   </div>
 </div>
-<div *ngIf="isEdit===true" class="border border-red-200 px-6 py-3 text-[28px] ">
+<div *ngIf="isEdit===true" class="input-change">
   <input type="text" *ngIf="!!todo" autofocus (onblur)="toggleIsEdit()" (blur)="toggleIsEdit()"
     [(ngModel)]="todo.title">
 </div>

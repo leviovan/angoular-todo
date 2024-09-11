@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
-import { Todo } from 'src/app/types/todo';
+import { Todo } from '../../../types/todo';
+
 
 
 @Component({

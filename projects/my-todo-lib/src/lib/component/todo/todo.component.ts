@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { TodoService } from 'src/app/services/todo.service';
-import { Status, Todo } from 'src/app/types/todo';
+import { TodoService } from '../../services/todo.service';
+import { Status, Todo } from '../../types/todo';
+
 
 
 @Component({

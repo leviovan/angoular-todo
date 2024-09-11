@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Status, Todo } from 'src/app/types/todo';
+import { Status, Todo } from '../../types/todo';
+
 
 @Component({
   selector: 'app-list-todo',
