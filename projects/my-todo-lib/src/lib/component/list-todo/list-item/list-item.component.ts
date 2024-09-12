@@ -27,7 +27,7 @@ export class ListItemComponent implements OnInit {
     }
   }
   constructor(private eRef: ElementRef) {
-    this.isEdit = true
+    this.isEdit = false
   }
 
   ngOnInit() { }

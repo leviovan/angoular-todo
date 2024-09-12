@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-
 import { Todo } from '../types/todo';
 import { BehaviorSubject } from 'rxjs';
 import { toggleStatus } from '../utilites/toogleStatus';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -11,18 +11,21 @@ import { toggleStatus } from '../utilites/toogleStatus';
 
 export class TodoService {
 
-
   private todos = new BehaviorSubject<Todo[]>([]);
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   get todos$() {
+    const todosLocal = localStorage.getItem('angular-todo/todos')
+    this.todos.next(todosLocal ? JSON.parse(todosLocal) : [])
     return this.todos.asObservable();
   }
+
   addTodo(newTodo: string) {
     if (newTodo?.trim()) {
-      this.todos.next([...this.todos.value, { id: Date.now(), status: 'active', title: newTodo }])
+      this.http.post<Todo[]>('', { newTodo: newTodo }).subscribe(res => res)
     }
+    this.todos.next(JSON.parse(localStorage.getItem('angular-todo/todos')!))
   }
 
   removeTodo(id: number) {

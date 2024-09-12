@@ -6,6 +6,8 @@ import { ListItemComponent } from './component/list-todo/list-item/list-item.com
 import { FilterTodoPipe } from './pipe/filter-todo.pipe';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpInterceptorServices } from './services/httpIntersaptor.service';
 
 
 
@@ -16,14 +18,18 @@ import { BrowserModule } from '@angular/platform-browser';
     Todos,
     ListTodo,
     ListItemComponent,
-    FilterTodoPipe
+    FilterTodoPipe,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule
   ],
   exports: [
     MyTodoLibComponent
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorServices, multi: true }
   ]
 })
 export class MyTodoLibModule { }

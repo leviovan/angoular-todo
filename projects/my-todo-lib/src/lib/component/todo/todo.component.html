@@ -15,12 +15,10 @@
         <button *ngIf="newTodo" (click)="addTodo(newTodo)">Добавить дело</button>
       </div>
     </div>
-
-
+    
     <app-list-todo [todos]="todos" (eventRemoveTodo)="removeTodo($event)"
       (eventToggleTodoStatus)="toggleStatusTodo($event)" [filter]="filter">
     </app-list-todo>
-
 
     <div style="display: flex; justify-content: space-between;">
       <span> осталось дел: {{(todos | filterTodo:'active').length}}</span>
@@ -30,6 +28,6 @@
       <button [ngClass]="{'active':isActiveClass('')}" (click)="setFilter('')">Все дела </button>
       <button [ngClass]="{'active':isActiveClass('active')}" (click)="setFilter('active')">Активные </button>
       <button [ngClass]="{'active':isActiveClass('completed')}" (click)="setFilter('completed')">Сделанные </button>
-  </div>
+    </div>
   </div>
 </section>
